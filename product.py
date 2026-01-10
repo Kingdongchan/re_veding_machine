@@ -43,9 +43,12 @@ def main_prd (main_frm):
         c = i%4
         
         #상품을 담을 프레임 형성 
-        prd_frm = tk.Frame(main_frm, width=5, height=5, bg="red")
-        prd_frm.grid(row=r, column=c, sticky="nsew")
-    
+        prd_frm = tk.Frame(main_frm, width=130, height=100, bg="white")
+        prd_frm.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
+        
+        #
+        prd_frm.grid_propagate(False)
+        
         #높이와 넓이를 만들기 위한 가중치 형성
         prd_frm.grid_columnconfigure(0, weight=1)
         prd_frm.grid_rowconfigure(0, weight=1)

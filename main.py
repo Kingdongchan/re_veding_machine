@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
+import product as pd
 ## 프레임 먼저 설정
 # 메인프레인와 보조 프레임들이 필요함
 # 메인 프레임:보조브레임 = 7:3 비율
@@ -18,7 +19,10 @@ root.geometry("800x600")
 
 # 메인 프레인 형성
 main_frm = tk.Frame(root, width=550, bg = "lightgray")
-main_frm.pack(side="left", fill="y", expand=True)
+main_frm.pack(side="left", fill="both", expand=True)
+
+#메인프레임 상품 목록들을 출력하는 함수
+pd.main_prd(main_frm)
 
 #사이드 프레임 형성
 side_frm = tk.Frame(root, width=250, bg = "white")
@@ -35,8 +39,8 @@ board_frm.pack(side="top", fill="y", expand=True)
 payment_frm = tk.Frame(side_frm, width=250, bg="white")
 payment_frm.pack(side="top", fill="y", expand=True)
 
-#3. 사이드 프레임 - 키패드 프래임
 keypad_frm = tk.Frame(side_frm, width=250, bg="white")
+#3. 사이드 프레임 - 키패드 프래임
 keypad_frm.pack(side="top", fill="y", expand=True)
 
 #4. 사이드 프레임 - 배출구 프레임
