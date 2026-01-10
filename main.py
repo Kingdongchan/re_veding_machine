@@ -16,4 +16,13 @@ root.title("자판기")
 root.geometry("800x600")
 
 
+# 메인 프레인 형성
+main_frm = tk.Frame(root, width=550, bg = "lightgray")
+main_frm.pack(side="left", fill="y", expand=True)
+
+#사이드 프레임 형성
+side_frm = tk.Frame(root, width=250, bg = "white")
+side_frm .pack(side="left", fill = "y", expand=True)
+
+
 root.mainloop()
