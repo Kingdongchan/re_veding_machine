@@ -30,23 +30,34 @@ prd = [
     {"num":20 ,"product": "불닭볶음면","price":1500 ,"stock":5 }
 ]
 
+
+
 #상품 숫자와 상품명만 출력
 for i in range(len(prd)):
     number = prd[i]["num"]
     product = prd[i]["product"]
-    num_prd = f"{number}. {product}"
+    prd_price = prd[i]["price"] 
+    num_prd = f"{number}. {product} {prd_price}원"
     
     # 20개의 제품 틀을 만들기 
     r = i//4
     c = i%4
     
-    prd_frm = tk.Frame(root, width=5, height=5, bg="white")
-    prd_frm.grid(row=r, column=c)
+    prd_frm = tk.Frame(root, width=5, height=5, bg="lightgray")
+    prd_frm.grid(row=r, column=c, sticky="nsew")
     
     prd_label = tk.Label(prd_frm, text=num_prd)
     prd_label.grid(row=0, column=0)
 
+##높이와 넓이를 사용하기 위해 가중치 주는 명령어 사용
+#열에 대한 가중치
+for z in range(4):
+    root.grid_columnconfigure(z, weight="1")
 
+#행에 대한 가중치
+for q in range(5):
+    root.grid_rowconfigure(q, weight="1")
+    
     
 
 root.mainloop()
