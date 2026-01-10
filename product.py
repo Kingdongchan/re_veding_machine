@@ -5,6 +5,7 @@ import tkinter as tk
     # 20개의 상품을 배치 -> 리스트안 딕셔너리 형태 -> {번호, 상품이름, 가격, 재고}
     
 root = tk.Tk()
+root.geometry("550x600")
 
 #20개의 상품 만들기
 prd = [
@@ -43,20 +44,26 @@ for i in range(len(prd)):
     r = i//4
     c = i%4
     
-    prd_frm = tk.Frame(root, width=5, height=5, bg="lightgray")
+    #상품을 담을 프레임 형성 
+    prd_frm = tk.Frame(root, width=5, height=5, bg="red")
     prd_frm.grid(row=r, column=c, sticky="nsew")
+   
+    #높이와 넓이를 만들기 위한 가중치 형성
+    prd_frm.grid_columnconfigure(0, weight=1)
+    prd_frm.grid_rowconfigure(0, weight=1)
     
+    #프레임 안에 상품명을 담을 라벨 생성(하단에 배치)
     prd_label = tk.Label(prd_frm, text=num_prd)
-    prd_label.grid(row=0, column=0)
+    prd_label.grid(row=0, column=0, sticky="s")
 
-##높이와 넓이를 사용하기 위해 가중치 주는 명령어 사용
+##공간을 모두 사용하기 위해 가중치 주는 명령어 사용
 #열에 대한 가중치
 for z in range(4):
-    root.grid_columnconfigure(z, weight="1")
+    root.grid_columnconfigure(z, weight=1)
 
 #행에 대한 가중치
 for q in range(5):
-    root.grid_rowconfigure(q, weight="1")
+    root.grid_rowconfigure(q, weight=1)
     
     
 
