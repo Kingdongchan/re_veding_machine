@@ -27,8 +27,24 @@ prd = [
     {"num":17 ,"product": "신라면","price":1300 ,"stock":5 },
     {"num":18 ,"product": "참깨라면","price":1300 ,"stock":5 },
     {"num":19 ,"product": "육개장 사발면","price":1300 ,"stock":5 },
-    {"num":20 ,"product": "불닭볶음면","price":1500 ,"stock":5 }, 
+    {"num":20 ,"product": "불닭볶음면","price":1500 ,"stock":5 }
 ]
+
+#상품 숫자와 상품명만 출력
+for i in range(len(prd)):
+    number = prd[i]["num"]
+    product = prd[i]["product"]
+    num_prd = f"{number}. {product}"
+    print(num_prd)
+# 20개의 제품 틀을 만들기 
+for j in range(1, 21):
+    
+    r = j//4
+    c = j%4
+    
+    prd_frm = tk.Frame(root, width=5, height=5, bg="white")
+    prd_frm.grid(row=r, column=c)
+    
 
 
 
