@@ -35,17 +35,16 @@ for i in range(len(prd)):
     number = prd[i]["num"]
     product = prd[i]["product"]
     num_prd = f"{number}. {product}"
-    print(num_prd)
-# 20개의 제품 틀을 만들기 
-for j in range(1, 21):
     
-    r = j//4
-    c = j%4
+    # 20개의 제품 틀을 만들기 
+    r = i//4
+    c = i%4
     
     prd_frm = tk.Frame(root, width=5, height=5, bg="white")
     prd_frm.grid(row=r, column=c)
     
-
+    prd_label = tk.Label(prd_frm, text=num_prd)
+    prd_label.grid(row=0, column=0)
 
 
     
