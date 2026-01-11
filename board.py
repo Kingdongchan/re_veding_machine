@@ -45,7 +45,7 @@ entry = tk.Entry(bottom_frm)
 entry.grid(row=0, column=0, sticky="e")
 
 #게시 버튼 -> 오른쪽 -> 버튼 클릭시 비밀번호를 쓰는 새로운 안내창이 나와야함
-btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.save(entry, blank))
+btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.entry_type(entry, blank))
 btn.grid(row=0, column=1, sticky="w")
 
 
