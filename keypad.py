@@ -12,4 +12,16 @@ import tkinter as tk
 
 root = tk.Tk()
 
+# 입력창 생성
+ent = tk.Entry(root, state="disabled")
+ent.grid(row=0, column=0, columnspan=3)
+
+#키패듬 오양 -> 취소는 결정 옆에 두어야하기때문에 따로 뺴놓아야함
+key = [
+    1, 2, 3,
+    4, 5, 6,
+    7, 8, 9,
+    "삭제", 0, "결정"
+]
+
 root.mainloop()
