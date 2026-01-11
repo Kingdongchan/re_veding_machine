@@ -15,6 +15,22 @@ blank = []
 root = tk.Tk()
 root.geometry("250x200")
 
+###프레임 3개를 형성###
 
+##1. 관리자가 쓰는 라벨 
+top_frm = tk.Frame(root, width=250, bg="white")
+top_frm.pack(side="top", fill="y")
+
+#"원하시는 상품을 써주십시오." 라벨 형성
+manager_label = tk.Label(top_frm, text="원하시는 상품을 써주십시오.")
+manager_label.pack()
+
+##2. 쌓이는 메모장
+middle_frm = tk.Frame(root, width=250, bg="red")
+middle_frm.pack(side="top", fill="y", expand=True)
+
+#3. 엽력창
+bottom_frm = tk.Frame(root, width=250, bg="blue")
+bottom_frm.pack(side="top", fill="y", expand=True)
 
 root.mainloop()
