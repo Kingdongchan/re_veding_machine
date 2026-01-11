@@ -67,5 +67,3 @@ def main_prd (main_frm):
         main_frm.grid_rowconfigure(q, weight=1)
         
         
-
-    
