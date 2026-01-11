@@ -1,5 +1,6 @@
 import tkinter as tk
 
+import save_btn as sbtn
 ### CURD 게시판 만들기
     ## 프레임 3개 필요함 -> 맨위에 관리자가 쓰는 라벨, 쌓이는 메모장, 입력창
     #1. 관리자가 쓰는 라벨 -> "원하시는 상품을 써주세요." 라는문구가 나와야함
@@ -11,7 +12,7 @@ import tkinter as tk
     
 #게시판을 쓰면 들어갈 배열을 형성
 blank = []
-    
+
 root = tk.Tk()
 root.geometry("250x200")
 
@@ -38,8 +39,9 @@ bottom_frm.pack(side="top", fill="y")
 entry = tk.Entry(bottom_frm)
 entry.grid(row=0, column=0, sticky="e")
 
-#게시 버튼 -> 오른쪽
-btn = tk.Button(bottom_frm, text="게시", width=1, height=1)
+#게시 버튼 -> 오른쪽 -> 버튼 클릭시 비밀번호를 쓰는 새로운 안내창이 나와야함
+btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.save(blank))
 btn.grid(row=0, column=1, sticky="w")
+
 
 root.mainloop()
