@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 import product as pd
+import board 
 ## 프레임 먼저 설정
 # 메인프레인와 보조 프레임들이 필요함
 # 메인 프레임:보조브레임 = 7:3 비율
@@ -31,9 +32,11 @@ side_frm .pack(side="left", fill = "y", expand=True)
 
 #######사이드 프레임 나누기#######
 
-#1. 사이드 프레임 -CURD 플레임 
+#1. 사이드 프레임 -CURD 프레임 
 board_frm = tk.Frame(side_frm, width=250, bg="white")
 board_frm.pack(side="top", fill="y", expand=True)
+    # CRUD 입력창 
+board.crud_board(board_frm)
 
 #2. 사이드 프레임 - 결제 프레임 
 payment_frm = tk.Frame(side_frm, width=250, bg="white")

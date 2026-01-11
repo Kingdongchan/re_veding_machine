@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-import post as pst
+import CRUD.post as pst
 #게시판 창에서 저장을 눌렀을 때 뜨는 창 -> 비밀번호를 써야하는 창
 # entry 1개(비밀번호 입력창), 저장버튼
 #만약에 입력창에 아무 것도 안 써있다면 내용를 써달라는 경고문이 나타났으면 좋겠음

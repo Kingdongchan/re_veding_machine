@@ -1,7 +1,7 @@
 import tkinter as tk
 
 import CRUD.save_btn as sbtn
-import post as pst
+import CRUD.post as pst
 ### CURD 게시판 만들기
     ## 프레임 3개 필요함 -> 맨위에 관리자가 쓰는 라벨, 쌓이는 메모장, 입력창
     #1. 관리자가 쓰는 라벨 -> "원하시는 상품을 써주세요." 라는문구가 나와야함
@@ -14,41 +14,36 @@ import post as pst
 #게시판을 쓰면 들어갈 배열을 형성
 blank = []
 
-root = tk.Tk()
-root.geometry("250x200")
+def crud_board (board_frm):
+    ###프레임 3개를 형성###
 
-###프레임 3개를 형성###
+    ##1. 관리자가 쓰는 라벨 
+    top_frm = tk.Frame(board_frm, width=250, bg="white")
+    top_frm.pack(side="top", fill="y")
 
-##1. 관리자가 쓰는 라벨 
-top_frm = tk.Frame(root, width=250, bg="white")
-top_frm.pack(side="top", fill="y")
+    #"원하시는 상품을 써주십시오." 라벨 형성
+    manager_label = tk.Label(top_frm, text="원하시는 상품을 써주십시오.")
+    manager_label.pack()
 
-#"원하시는 상품을 써주십시오." 라벨 형성
-manager_label = tk.Label(top_frm, text="원하시는 상품을 써주십시오.")
-manager_label.pack()
-
-##2. 쌓이는 메모장
-middle_frm = tk.Frame(root, width=250, bg="red")
-middle_frm.pack(side="top", fill="both", expand=True)
+    ##2. 쌓이는 메모장
+    middle_frm = tk.Frame(board_frm, width=250, bg="white")
+    middle_frm.pack(side="top", fill="both", expand=True)
 
 
-#3. 엽력창
-bottom_frm = tk.Frame(root, width=250, bg="white")
-bottom_frm.pack(side="top", fill="y")
+    #3. 엽력창
+    bottom_frm = tk.Frame(board_frm, width=250, bg="white")
+    bottom_frm.pack(side="top", fill="y")
 
-##blank에 들어있는 것들을 쌓기
-    # 좌측에는 작성한 내용들, 우측에는 버튼
-    # 버튼은 누르면 비밀번호 입력 창이 나옴 -> 맞으면 삭제, 틀리면 재입력
-pst.post_type(blank, middle_frm)
+    ##blank에 들어있는 것들을 쌓기
+        # 좌측에는 작성한 내용들, 우측에는 버튼
+        # 버튼은 누르면 비밀번호 입력 창이 나옴 -> 맞으면 삭제, 틀리면 재입력
+    pst.post_type(blank, middle_frm)
 
-    
-#입력창(entry)형성 1줄 -> 왼쪽
-entry = tk.Entry(bottom_frm)
-entry.grid(row=0, column=0, sticky="e")
+        
+    #입력창(entry)형성 1줄 -> 왼쪽
+    entry = tk.Entry(bottom_frm)
+    entry.grid(row=0, column=0, sticky="e")
 
-#게시 버튼 -> 오른쪽 -> 버튼 클릭시 비밀번호를 쓰는 새로운 안내창이 나와야함
-btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.entry_type(entry, blank, middle_frm))
-btn.grid(row=0, column=1, sticky="w")
-
-
-root.mainloop()
+    #게시 버튼 -> 오른쪽 -> 버튼 클릭시 비밀번호를 쓰는 새로운 안내창이 나와야함
+    btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.entry_type(entry, blank, middle_frm))
+    btn.grid(row=0, column=1, sticky="w")
