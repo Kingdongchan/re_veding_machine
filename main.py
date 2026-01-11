@@ -36,8 +36,10 @@ side_frm.pack_propagate(False)
 #######사이드 프레임 나누기#######
 
 #1. 사이드 프레임 -CURD 프레임 
-board_frm = tk.Frame(side_frm, width=250, bg="white")
-board_frm.pack(side="top", fill="y", expand=True)
+board_frm = tk.Frame(side_frm, width=250, height=250, bg="white")
+board_frm.pack(side="top")
+
+board_frm.pack_propagate(False)
     # CRUD 입력창 로직 
 board.crud_board(board_frm)
 
