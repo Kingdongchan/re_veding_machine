@@ -37,7 +37,7 @@ def entry_type (entry, blank, middle_frm):
                     return False
                 
                 else:
-                    blank.append({"내용":e, "password":pwd, "manager_pwd":1111})
+                    blank.append({"내용":e, "password":pwd, "manager_pwd":"1111"})
                     ety.delete(0, tk.END)
                     entry.delete(0, tk.END)
                     root.destroy()
