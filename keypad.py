@@ -29,11 +29,39 @@ for index, i in enumerate(key):
     r = index//3+1
     c = index%3
     
-    nmb_btn = tk.Button(root, text=i, width=3, height=1)
+    nmb_btn = tk.Button(root, text=i, width=3, height=1, command= lambda idx=i:number_input(idx))
     nmb_btn.grid(row=r, column=c)
     
 #취소버튼 만들기
-cancel_btn = tk.Button(root, text="취소", width=3, height=3)
+cancel_btn = tk.Button(root, text="취소", width=3, height=3, command=lambda idx=i:number_input(idx))
 cancel_btn.grid(row=3, column=3, rowspan=2)
 
+#숫자버튼을 누르면 입력창 끝에 숫자들이 나와야함
+#삭제버튼을 누르면 입력창안에 있는 것들이 삭제가 되어야 함
+def number_input(num):
+    if num == "삭제":
+        ent.config(state="normal")
+        ent.delete(0, tk.END)
+        ent.config(state="disabled")
+    
+    #결정 버튼을 누르면 입력창에 "구매 감사합니다."라고 송출되어야 함.
+    elif num == "결정":
+        ent. config(state="normal")
+        ent.delete(0, tk.END)
+        ent.insert(tk.END, "구매 감사합니다.")
+        ent.config(state="disabled")
+    
+    #취소 버튼이 누르면 "취소되었습니다"라는 문구가 송출되어야 함.
+    elif num == "취소":
+        ent. config(state="normal")
+        ent.delete(0, tk.END)
+        ent.insert(tk.END, "취소되었습니다.")
+        ent.config(state="disabled")
+    
+    else:
+        ent. config(state="normal")
+        ent.delete(0, tk.END)
+        ent.insert(tk.END, num)
+        ent.config(state="disabled")
+    
 root.mainloop()
