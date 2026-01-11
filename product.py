@@ -61,7 +61,7 @@ def main_prd (main_frm):
         prd_label = tk.Label(prd_frm, text=num_prd)
         prd_label.grid(row=0, column=0, sticky="s")
         
-        light_prd.append({"frm":prd_frm, "price": prd_price, "stock":stock})
+        light_prd.append({"frm":prd_frm, "price": prd_price, "stock":stock, "num":number})
 
     ##공간을 모두 사용하기 위해 가중치 주는 명령어 사용
     #열에 대한 가중치

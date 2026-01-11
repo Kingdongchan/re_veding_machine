@@ -51,6 +51,8 @@ def key_number (keypad_frm):
     #숫자버튼을 누르면 입력창 끝에 숫자들이 나와야함
     #삭제버튼을 누르면 입력창안에 있는 것들이 삭제가 되어야 함
     def number_input(num, nmb_btn):
+        global return_coin
+        
         if num == "삭제":
             ent.config(state="normal")
             ent.delete(0, tk.END)
@@ -81,7 +83,7 @@ def key_number (keypad_frm):
             elif typ == "현금":
                 if ent in prd_num:
                     stk = stk - 1
-                    pay_ = pay_ - pri
+                    pay_ = int(pay_) - pri
                     
                     if pay_ > return_coin:
                         ent.config(state="normal")
