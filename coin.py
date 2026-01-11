@@ -34,20 +34,29 @@ def payment_type(num):
     
     count = ent.get()
     
+    ent.config(state="normal")
+    
+    a= "0"
+    ent.insert(0, a)
+    
     if num == "카드":
-        ent.config(state="normal")
         ent.insert(0, "True")
         ent.config(state="disabled")
         destory_window()
         
     else:
-        count = count + num
-        
-        ent.config(state="normal")
-        ent.insert(0, f"{count}")
+        # get() 명령어는 배열의 숫자도 문자열로 알기 떄문에 int명령어를 써줘서 숫자로 바꿔주는 역할을 해야됨
+        new_count = int(count) + num
+    
+        ent.delete(0, tk.END)
+        ent.insert(0, str(new_count))
         ent.config(state="disabled")
-        
-def destory_window():
+
+#창을 없애는 로직 형성
+def destory_window(insert_ent):
+    result = ent.get()
+    
+    insert_ent.insert(0, result)
     root.destroy()
     
 root.mainloop()
