@@ -3,6 +3,8 @@ from tkinter import messagebox
 
 import product as pd
 import board 
+import payment
+import keypad
 ## 프레임 먼저 설정
 # 메인프레인와 보조 프레임들이 필요함
 # 메인 프레임:보조브레임 = 7:3 비율
@@ -27,24 +29,30 @@ pd.main_prd(main_frm)
 
 #사이드 프레임 형성
 side_frm = tk.Frame(root, width=250, bg = "white")
-side_frm .pack(side="left", fill = "y", expand=True)
+side_frm .pack(side="left", fill  = "y", expand=True)
 
+side_frm.pack_propagate(False)
 
 #######사이드 프레임 나누기#######
 
 #1. 사이드 프레임 -CURD 프레임 
 board_frm = tk.Frame(side_frm, width=250, bg="white")
 board_frm.pack(side="top", fill="y", expand=True)
-    # CRUD 입력창 
+    # CRUD 입력창 로직 
 board.crud_board(board_frm)
 
 #2. 사이드 프레임 - 결제 프레임 
 payment_frm = tk.Frame(side_frm, width=250, bg="white")
 payment_frm.pack(side="top", fill="y", expand=True)
+    #결제 로직
+payment.user_payment(payment_frm)
 
-keypad_frm = tk.Frame(side_frm, width=250, bg="white")
 #3. 사이드 프레임 - 키패드 프래임
+keypad_frm = tk.Frame(side_frm, width=250, bg="white")
 keypad_frm.pack(side="top", fill="y", expand=True)
+
+    #키패드 로직
+keypad.key_number(keypad_frm)
 
 #4. 사이드 프레임 - 배출구 프레임
 output_frm = tk.Frame(side_frm, width=250, bg="white")
