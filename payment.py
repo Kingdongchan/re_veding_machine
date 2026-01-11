@@ -37,7 +37,7 @@ def user_payment(payment_frm):
             if current_coin == "True" and stk>0:
                 frm.config(bg="red")
                 stk = stk -1
-                purchase_prd.append({"type": "카드", "num": num, "price":pri, "pay":current_coin, "frm":frm})
+                purchase_prd.append({"type": "카드", "num": num, "price":pri, "frm":frm})
             
             elif int(current_coin) >= pri and stk>0:
                 frm.config(bg="red")
