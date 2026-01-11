@@ -24,4 +24,13 @@ key = [
     "삭제", 0, "결정"
 ]
 
+#반복문을 통해서 숫자 배열을 생성
+for index, i in enumerate(key):
+    r = index//3+1
+    c = index%3
+    
+    nmb_btn = tk.Button(root, text=i, width=3, height=1)
+    nmb_btn.grid(row=r, column=c)
+    
+
 root.mainloop()
