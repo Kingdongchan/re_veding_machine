@@ -30,7 +30,7 @@ def coin_window (insert_ent):
         btn.grid(row=1, column=i)
         
     #투입완료 버튼 
-    ok_bnt = tk.Button(root, text="투입 완료", command=lambda:destory_window(insert_ent))
+    ok_bnt = tk.Button(root, text="투입 완료", command=lambda:destory_window())
     ok_bnt.grid(row=2, column=5)
 
     #만약 카드를 누른다면 True와 Faluse로 구별함 (신용카드로 가정하고 만듬)
@@ -42,6 +42,7 @@ def coin_window (insert_ent):
         ent.config(state="normal")
         
         if num == "카드":
+            ent.delete(0, tk.END)
             ent.insert(0, "True")
             ent.config(state="disabled")
             destory_window()
@@ -55,9 +56,10 @@ def coin_window (insert_ent):
             ent.config(state="disabled")
 
     #창을 없애는 로직 형성
-    def destory_window(insert_ent):
+    def destory_window():
         result = ent.get()
-        
+        insert_ent.config(state="normal")
         insert_ent.insert(0, result)
+        insert_ent.config(state="disabled")
         root.destroy()
         
