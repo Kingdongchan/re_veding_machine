@@ -35,12 +35,17 @@ middle_frm.pack(side="top", fill="y", expand=True)
 bottom_frm = tk.Frame(root, width=250, bg="white")
 bottom_frm.pack(side="top", fill="y")
 
+##blank에 들어있는 것들을 쌓기
+    # 좌측에는 작성한 내용들, 우측에는 버튼
+    # 버튼은 누르면 비밀번호 입력 창이 나옴 -> 맞으면 삭제, 틀리면 재입력
+    
+    
 #입력창(entry)형성 1줄 -> 왼쪽
 entry = tk.Entry(bottom_frm)
 entry.grid(row=0, column=0, sticky="e")
 
 #게시 버튼 -> 오른쪽 -> 버튼 클릭시 비밀번호를 쓰는 새로운 안내창이 나와야함
-btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.save(blank))
+btn = tk.Button(bottom_frm, text="게시", width=1, height=1, command=lambda: sbtn.save(entry, blank))
 btn.grid(row=0, column=1, sticky="w")
 
 
