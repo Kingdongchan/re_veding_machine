@@ -29,8 +29,17 @@ manager_label.pack()
 middle_frm = tk.Frame(root, width=250, bg="red")
 middle_frm.pack(side="top", fill="y", expand=True)
 
+
 #3. 엽력창
-bottom_frm = tk.Frame(root, width=250, bg="blue")
-bottom_frm.pack(side="top", fill="y", expand=True)
+bottom_frm = tk.Frame(root, width=250, bg="white")
+bottom_frm.pack(side="top", fill="y")
+
+#입력창(entry)형성 1줄 -> 왼쪽
+entry = tk.Entry(bottom_frm)
+entry.grid(row=0, column=0, sticky="e")
+
+#게시 버튼 -> 오른쪽
+btn = tk.Button(bottom_frm, text="게시", width=1, height=1)
+btn.grid(row=0, column=1, sticky="w")
 
 root.mainloop()
