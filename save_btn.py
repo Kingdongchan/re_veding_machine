@@ -2,7 +2,7 @@ import tkinter as tk
 #게시판 창에서 저장을 눌렀을 때 뜨는 창 -> 비밀번호를 써야하는 창
 # entry 1개(비밀번호 입력창), 저장버튼
 
-def save (blank):
+def save (entry, blank):
     
     root = tk.Tk()
     root.title("비밀번호 설정")
@@ -13,8 +13,8 @@ def save (blank):
     root.grid_rowconfigure(0, weight=1)
 
     #입력창
-    entry = tk.Entry(root)
-    entry.grid(row=0, column=0, sticky="e")
+    ety = tk.Entry(root)
+    ety.grid(row=0, column=0, sticky="e")
             
     #버튼
     btn = tk.Button(root, text="확인", command=lambda: save_pwd())
@@ -28,8 +28,12 @@ def save (blank):
             return False
         
         else:
-            blank.append(pwd)
+            #입력창에 있는 것 배열에 넣기
+            e = entry.get()
+            
+            blank.append({"내용":e, "password":pwd, "manager_pwd":1111})
+            ety.delete(0, tk.END)
             entry.delete(0, tk.END)
             root.destroy()
-
+    
     root.mainloop()
