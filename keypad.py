@@ -1,5 +1,6 @@
 import tkinter as tk
 
+import payment as pm
 ## 키패드
     # 1,2,3,4,5,6,7,8,9,0 버튼 -> 누르면 가장 끝에 숫자가 붙어서 나와야함
     # 삭제버튼 -> 삭제하면 입력창에 있는 숫자들이 사라져야함
@@ -18,6 +19,15 @@ def key_number (keypad_frm):
     ent = tk.Entry(keypad_frm, state="disabled")
     ent.grid(row=0, column=0, columnspan=4, sticky="w")
 
+    #payment에서 정보 가져오기
+    for j in pm.purchase_prd:
+        prd_num = j["num"]
+        pri = j["price"]
+        pay_ = j["pay"]
+        frm = j["frm"]
+        typ = j["type"]
+        stk = j["stock"]       
+        
     #키패듬 오양 -> 취소는 결정 옆에 두어야하기때문에 따로 뺴놓아야함
     key = [
         1, 2, 3,
@@ -48,11 +58,45 @@ def key_number (keypad_frm):
         
         #결정 버튼을 누르면 입력창에 "구매 감사합니다."라고 송출되어야 함.
         elif num == "결정":
-            ent. config(state="normal")
-            ent.delete(0, tk.END)
-            ent.insert(tk.END, "구매 감사합니다.")
-            ent.config(state="disabled")
-        
+            ## 만약에 결정을 누른다면 
+            #   카드라면
+                # 결정을 누른 뒤 프레임 색깔들 원상복귀
+                # 재고가 하나 빠져야함
+            #   현금이라면
+                # 결정을 누른 뒤 프레임 색깔들 원상복귀 
+                # 기존 돈에서 상품 가격만큼 돈 깎은 후 반환
+                # 기계에 잔돈이 없다면 전화번호 노출
+                # 기계에 잔돈이 있다면 '구매 감사합니다' 출력
+            if typ == "카드":
+                if ent in prd_num:
+                    
+                    stk = stk - 1
+                
+                    ent. config(state="normal")
+                    ent.delete(0, tk.END)
+                    ent.insert(tk.END, "구매 감사합니다.")
+                    ent.config(state="disabled")
+                    frm.config(bg="white")
+                                       
+            elif typ == "현금":
+                if ent in prd_num:
+                    stk = stk - 1
+                    pay_ = pay_ - pri
+                    
+                    if pay_ > return_coin:
+                        ent.config(state="normal")
+                        ent.delete(0, tk.END)
+                        ent.insert(0, "010-XXXX-XXX 연락주십시오.")
+                        ent.config(state="disabled")
+                    else:
+                        return_coin = return_coin - pay_
+                        frm.config(bg="white")
+                        ent. config(state="normal")
+                        ent.delete(0, tk.END)
+                        ent.insert(tk.END, "구매 감사합니다.")
+                        ent.config(state="disabled")
+                        
+                        
         else:
             ent. config(state="normal")
             ent.insert(tk.END, num)
