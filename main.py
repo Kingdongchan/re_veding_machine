@@ -39,7 +39,9 @@ side_frm.pack_propagate(False)
 board_frm = tk.Frame(side_frm, width=250, height=250, bg="white")
 board_frm.pack(side="top")
 
+#창이 늘어나지 않고 고정되도록 하는 명령어 추가
 board_frm.pack_propagate(False)
+
     # CRUD 입력창 로직 
 board.crud_board(board_frm)
 

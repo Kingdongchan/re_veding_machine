@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def coin_window (insert_ent):
+def coin_window (insert_ent, callback):
     
     root = tk.Toplevel()
     root.title("결제 방식 선택")
@@ -47,6 +47,7 @@ def coin_window (insert_ent):
             ent.config(state="disabled")
             destory_window()
             
+            callback()
         else:
             # get() 명령어는 배열의 숫자도 문자열로 알기 떄문에 int명령어를 써줘서 숫자로 바꿔주는 역할을 해야됨
             new_count = int(count) + num
@@ -54,12 +55,14 @@ def coin_window (insert_ent):
             ent.delete(0, tk.END)
             ent.insert(0, str(new_count))
             ent.config(state="disabled")
-
+            
     #창을 없애는 로직 형성
     def destory_window():
         result = ent.get()
         insert_ent.config(state="normal")
+        insert_ent.delete(0, tk.END)
         insert_ent.insert(0, result)
         insert_ent.config(state="disabled")
         root.destroy()
         
+        callback()

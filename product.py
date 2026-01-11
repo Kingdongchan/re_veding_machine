@@ -3,8 +3,12 @@ import tkinter as tk
 ##메인 플레임 - 상품 진열
     # 20개의 프레임을 형성(4x5 형식)
     # 20개의 상품을 배치 -> 리스트안 딕셔너리 형태 -> {번호, 상품이름, 가격, 재고}
+
+#전연변수로 선언
+light_prd = []
     
 def main_prd (main_frm):
+    
     #20개의 상품 만들기
     prd = [
         {"num":1 ,"product": "코카콜라" ,"price":1400 ,"stock":5 },
@@ -37,7 +41,7 @@ def main_prd (main_frm):
         product = prd[i]["product"]
         prd_price = prd[i]["price"] 
         num_prd = f"{number}. {product} {prd_price}원"
-        
+        stock = prd[i]["stock"]
         # 20개의 제품 틀을 만들기 
         r = i//4
         c = i%4
@@ -56,6 +60,8 @@ def main_prd (main_frm):
         #프레임 안에 상품명을 담을 라벨 생성(하단에 배치)
         prd_label = tk.Label(prd_frm, text=num_prd)
         prd_label.grid(row=0, column=0, sticky="s")
+        
+        light_prd.append({"frm":prd_frm, "price": prd_price, "stock":stock})
 
     ##공간을 모두 사용하기 위해 가중치 주는 명령어 사용
     #열에 대한 가중치

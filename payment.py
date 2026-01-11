@@ -1,7 +1,7 @@
 import tkinter as tk
 
 import payment_.coin as coin
-import product
+import product as pd
 # 돈이 얼마나 들어왔는지에 대한 입력창이 필요함 
 ## 결제 버튼이 존재함
     #새로운 창에서는 100, 500, 1000, 5000, 10000, 카드, 입력완료이 있어야함
@@ -16,7 +16,27 @@ def user_payment(payment_frm):
     insert_ent = tk.Entry(payment_frm, width=25, state="disabled")
     insert_ent.grid(row=0, column=0)
 
-    #'결제 방식 선택' 버튼 형성
-    bnt = tk.Button(payment_frm, text="결제 방법 선택", command=lambda: coin.coin_window(insert_ent))
-    bnt.grid(row=1, column=0, sticky="e")
+    insert_ent.config(state="normal")
+    insert_ent.insert(tk.END, "0")
+    insert_ent.config(state="disabled")
 
+    def chage_frm ():
+        #product.py의 있는 배열 가져와서 비교한 뒤 프레임 색깔 변경
+        current_coin = insert_ent.get()
+        
+        for i in pd.light_prd:
+            frm = i["frm"]
+            pri = i["price"]
+            stk = i["stock"]
+            
+            if current_coin == "True" and stk>0:
+                frm.config(bg="red")
+                stk = stk -1
+            elif int(current_coin) >= pri and stk>0:
+                frm.config(bg="red")
+                stk = stk -1 
+            
+    
+    #'결제 방식 선택' 버튼 형성
+    bnt = tk.Button(payment_frm, text="결제 방법 선택", command=lambda: coin.coin_window(insert_ent, chage_frm))
+    bnt.grid(row=1, column=0, sticky="e")
