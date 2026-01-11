@@ -14,7 +14,7 @@ root = tk.Tk()
 
 # 입력창 생성
 ent = tk.Entry(root, state="disabled")
-ent.grid(row=0, column=0, columnspan=3)
+ent.grid(row=0, column=0, columnspan=4)
 
 #키패듬 오양 -> 취소는 결정 옆에 두어야하기때문에 따로 뺴놓아야함
 key = [
@@ -32,5 +32,8 @@ for index, i in enumerate(key):
     nmb_btn = tk.Button(root, text=i, width=3, height=1)
     nmb_btn.grid(row=r, column=c)
     
+#취소버튼 만들기
+cancel_btn = tk.Button(root, text="취소", width=3, height=3)
+cancel_btn.grid(row=3, column=3, rowspan=2)
 
 root.mainloop()
