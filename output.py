@@ -7,6 +7,8 @@ import tkinter as tk
 # 클릭하면 버튼이 사라져야 함
 def output_prd (output_frm):
     
+    for widget in output_frm.winfo_children():
+        widget.destroy()
     ##틀 만들기 - 동전, 상품
     #1. 동전 틀
     coin_frm = tk.Frame(output_frm, width=50, height=50, bg="lightgray")
@@ -24,4 +26,4 @@ def output_prd (output_frm):
  
  #클릭하면 파괴되는 함수
 def destroy_bnt (event):
-    event.destroy()
+    event.config(text="")
