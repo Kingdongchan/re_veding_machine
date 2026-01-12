@@ -35,14 +35,16 @@ def user_payment(payment_frm):
             pri = i["price"]
             stk = i["stock"]
             num = i["num"]
+            prd = i["prd"]
+            prd = i["prd"]
             
             if current_coin == "True" and stk>0:
                 frm.config(bg="red")
-                purchase_prd.append({"type": "카드", "num": num, "price":pri, "frm":frm, "stock":stk})
+                purchase_prd.append({"type": "카드", "num": num, "price":pri, "frm":frm, "stock":stk, "product": prd})
             
             elif int(current_coin) >= pri and stk>0:
                 frm.config(bg="red")
-                purchase_prd.append({"type": "현금", "num": num, "price":pri, "frm":frm, "stock": stk})
+                purchase_prd.append({"type": "현금", "num": num, "price":pri, "frm":frm, "stock": stk, "product":prd})
              
 
     #'결제 방식 선택' 버튼 형성

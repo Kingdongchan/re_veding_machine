@@ -1,6 +1,7 @@
 import tkinter as tk
 
 import payment as pm
+import output
 ## 키패드
     # 1,2,3,4,5,6,7,8,9,0 버튼 -> 누르면 가장 끝에 숫자가 붙어서 나와야함
     # 삭제버튼 -> 삭제하면 입력창에 있는 숫자들이 사라져야함
@@ -13,9 +14,9 @@ import payment as pm
 
 return_coin = 5000
 
-repayment= []
+repayment= {"product":"", "return":0}
 
-def key_number (keypad_frm):
+def key_number (keypad_frm, output_frm):
     # 입력창 생성
     ent = tk.Entry(keypad_frm, state="disabled")
     ent.grid(row=0, column=0, columnspan=4, sticky="w")
@@ -33,7 +34,7 @@ def key_number (keypad_frm):
         r = index//3+1
         c = index%3
         
-        nmb_btn = tk.Button(keypad_frm, text=i, width=3, height=1, command= lambda idx=i:number_input(idx))
+        nmb_btn = tk.Button(keypad_frm, text=i, width=3, height=1, command= lambda idx=i:number_input(idx,))
         nmb_btn.grid(row=r, column=c)
         
     #취소버튼 만들기
@@ -59,7 +60,8 @@ def key_number (keypad_frm):
             for j in pm.purchase_prd:
                 prd_num = j["num"]
                 pri = j["price"]
-                frm = j["frm"]       
+                frm = j["frm"]    
+                prd = j["product"]   
                 
                 frm.config(bg="white")    
                 
@@ -70,7 +72,7 @@ def key_number (keypad_frm):
             #   현금이라면
                 # 결정을 누른 뒤 프레임 색깔들 원상복귀 
                 # 기존 돈에서 상품 가격만큼 돈 깎은 후 반환
-                # 기계에 잔돈이 없다면 전화번호 노출
+                 # 기계에 잔돈이 없다면 전화번호 노출
                 # 기계에 잔돈이 있다면 '구매 감사합니다' 출력
                     
                 if str(prd_num)==user_input:
@@ -79,7 +81,7 @@ def key_number (keypad_frm):
                             
                             j["stock"] = j["stock"] - 1
                         
-                            repayment.append({"product":j["product"]})
+                            repayment["product"] = prd
                             ent. config(state="normal")
                             ent.delete(0, tk.END)
                             ent.insert(tk.END, "구매 감사합니다.")
@@ -92,7 +94,9 @@ def key_number (keypad_frm):
                             user_input = int(user_input) - pri
                             
                             if int(user_input) > return_coin:
-                                repayment.append({"product":j["product"]})
+                                
+                                repayment["product"] = prd
+                                repayment["return"] = user_input
                                 ent.config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(0, "010-XXXX-XXX 연락주십시오.")
@@ -101,17 +105,20 @@ def key_number (keypad_frm):
                             else:
                                 return_coin = return_coin - int(user_input)
                                 
-                                repayment.append({"product":j["product"] ,"return": return_coin})
+                                repayment["product"] = prd
                                 
                                 ent. config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(tk.END, "구매 감사합니다.")
                                 ent.config(state="disabled")
+           
+            output.output_prd(output_frm)
                                               
         else:
             ent. config(state="normal")
             ent.insert(tk.END, num)
             ent.config(state="disabled")
+        
         
         #취소 버튼이 누르면 반환이 되면서 "취소되었습니다"라는 문구가 송출되어야 함.
         #만약에 넣은 돈이 반환할 돈보다 많다면 번호 노출

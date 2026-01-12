@@ -5,6 +5,7 @@ import product as pd
 import board 
 import payment
 import keypad
+
 ## 프레임 먼저 설정
 # 메인프레인와 보조 프레임들이 필요함
 # 메인 프레임:보조브레임 = 7:3 비율
@@ -55,12 +56,12 @@ payment.user_payment(payment_frm)
 keypad_frm = tk.Frame(side_frm, width=250, bg="white")
 keypad_frm.pack(side="top", fill="y", expand=True)
 
-    #키패드 로직
-keypad.key_number(keypad_frm)
 
 #4. 사이드 프레임 - 배출구 프레임
 output_frm = tk.Frame(side_frm, width=250, bg="white")
 output_frm.pack(side="top", fill="y", expand=True)
-
+    
+    #키패드 로직
+keypad.key_number(keypad_frm, output_frm)
 
 root.mainloop()
