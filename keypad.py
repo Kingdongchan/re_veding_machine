@@ -45,16 +45,6 @@ def key_number (keypad_frm):
         global return_coin
         
         user_input = ent.get()
-        
-    #payment에서 정보 가져오기
-        for j in pm.purchase_prd:
-            prd_num = j["num"]
-            pri = j["price"]
-            pay_ = j["pay"]
-            frm = j["frm"]
-            typ = j["type"]
-            stk = j["stock"]       
-        
         if num == "삭제":
             ent.config(state="normal")
             ent.delete(0, tk.END)
@@ -63,6 +53,15 @@ def key_number (keypad_frm):
         
         #결정 버튼을 누르면 입력창에 "구매 감사합니다."라고 송출되어야 함.
         elif num == "결정":
+            
+        #payment에서 정보 가져오기
+            for j in pm.purchase_prd:
+                prd_num = j["num"]
+                pri = j["price"]
+                frm = j["frm"]
+                stk = j["stock"]       
+            
+            
             ## 만약에 결정을 누른다면 
             #   카드라면
                 # 결정을 누른 뒤 프레임 색깔들 원상복귀
@@ -72,36 +71,39 @@ def key_number (keypad_frm):
                 # 기존 돈에서 상품 가격만큼 돈 깎은 후 반환
                 # 기계에 잔돈이 없다면 전화번호 노출
                 # 기계에 잔돈이 있다면 '구매 감사합니다' 출력
-            if typ == "카드":
-                if ent in prd_num:
-                    
-                    stk = stk - 1
                 
-                    ent. config(state="normal")
-                    ent.delete(0, tk.END)
-                    ent.insert(tk.END, "구매 감사합니다.")
-                    ent.config(state="disabled")
-                    frm.config(bg="white")
-                                       
-            elif typ == "현금":
-                if ent in prd_num:
-                    stk = stk - 1
-                    pay_ = int(pay_) - pri
+            if str(prd_num)==user_input:
+                if j["type"] == "카드":
+
+                        
+                        stk = stk - 1
                     
-                    if pay_ > return_coin:
-                        ent.config(state="normal")
-                        ent.delete(0, tk.END)
-                        ent.insert(0, "010-XXXX-XXX 연락주십시오.")
-                        ent.config(state="disabled")
-                    else:
-                        return_coin = return_coin - pay_
                         frm.config(bg="white")
                         ent. config(state="normal")
                         ent.delete(0, tk.END)
                         ent.insert(tk.END, "구매 감사합니다.")
                         ent.config(state="disabled")
+                                        
+                elif j["type"] == "현금":
+
+                        stk = stk - 1
+                        user_input = int(user_input) - pri
                         
-                        
+                        if int(user_input) > return_coin:
+                            ent.config(state="normal")
+                            ent.delete(0, tk.END)
+                            ent.insert(0, "010-XXXX-XXX 연락주십시오.")
+                            ent.config(state="disabled")
+                        else:
+                            return_coin = return_coin - int(user_input)
+                           
+                            frm.config(bg="white")
+                            ent. config(state="normal")
+                            ent.delete(0, tk.END)
+                            ent.insert(tk.END, "구매 감사합니다.")
+                            ent.config(state="disabled")
+                            
+                            
         else:
             ent. config(state="normal")
             ent.insert(tk.END, num)

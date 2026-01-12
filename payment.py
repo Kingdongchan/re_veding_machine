@@ -26,8 +26,10 @@ def user_payment(payment_frm):
 
     def chage_frm ():
         #product.py의 있는 배열 가져와서 비교한 뒤 프레임 색깔 변경
+        purchase_prd.clear()
+        
         current_coin = insert_ent.get()
-    
+        
         for i in pd.light_prd:
             frm = i["frm"]
             pri = i["price"]
@@ -40,8 +42,9 @@ def user_payment(payment_frm):
             
             elif int(current_coin) >= pri and stk>0:
                 frm.config(bg="red")
-                purchase_prd.append({"type": "현금", "num": num, "price":pri, "pay":current_coin, "frm":frm, "stock": stk})
-    
+                purchase_prd.append({"type": "현금", "num": num, "price":pri, "frm":frm, "stock": stk})
+             
+
     #'결제 방식 선택' 버튼 형성
     bnt = tk.Button(payment_frm, text="결제 방법 선택", command=lambda: coin.coin_window(insert_ent, chage_frm))
     bnt.grid(row=1, column=0, sticky="e")
