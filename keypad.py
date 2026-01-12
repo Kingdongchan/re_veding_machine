@@ -58,8 +58,7 @@ def key_number (keypad_frm):
             for j in pm.purchase_prd:
                 prd_num = j["num"]
                 pri = j["price"]
-                frm = j["frm"]
-                stk = j["stock"]       
+                frm = j["frm"]       
             
             
             ## 만약에 결정을 누른다면 
@@ -76,7 +75,7 @@ def key_number (keypad_frm):
                 if j["type"] == "카드":
 
                         
-                        stk = stk - 1
+                        j["stock"] = j["stock"] - 1
                     
                         frm.config(bg="white")
                         ent. config(state="normal")
@@ -86,7 +85,8 @@ def key_number (keypad_frm):
                                         
                 elif j["type"] == "현금":
 
-                        stk = stk - 1
+                        j["stock"] = j["stock"] - 1
+                        
                         user_input = int(user_input) - pri
                         
                         if int(user_input) > return_coin:
