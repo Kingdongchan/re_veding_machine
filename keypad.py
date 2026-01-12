@@ -92,7 +92,7 @@ def key_number (keypad_frm, output_frm):
 
                             j["stock"] = j["stock"] - 1
                             
-                            j["pay"] = j["pay"] - pri
+                            j["pay"] = int(j["pay"]) - pri
                             
                             if j["pay"] > return_coin:
                                 
@@ -103,12 +103,10 @@ def key_number (keypad_frm, output_frm):
                                 ent.insert(0, "010-XXXX-XXX 연락주십시오.")
                                 ent.config(state="disabled")
                                 
-                            else:
-                                return_coin = return_coin - j["pay"]
-                                
+                            else: 
                                 
                                 repayment["product"] = prd
-                                repayment["return_coin"] = return_coin
+                                repayment["return_coin"] = j["pay"]
                                 ent. config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(tk.END, "구매 감사합니다.")
