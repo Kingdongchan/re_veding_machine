@@ -13,6 +13,7 @@ import payment as pm
 
 return_coin = 5000
 
+repayment= []
 
 def key_number (keypad_frm):
     # 입력창 생성
@@ -59,7 +60,7 @@ def key_number (keypad_frm):
                 prd_num = j["num"]
                 pri = j["price"]
                 frm = j["frm"]       
-            
+                
                 frm.config(bg="white")    
                 
             ## 만약에 결정을 누른다면 
@@ -78,7 +79,7 @@ def key_number (keypad_frm):
                             
                             j["stock"] = j["stock"] - 1
                         
-                            
+                            repayment.append({"product":j["product"]})
                             ent. config(state="normal")
                             ent.delete(0, tk.END)
                             ent.insert(tk.END, "구매 감사합니다.")
@@ -91,18 +92,22 @@ def key_number (keypad_frm):
                             user_input = int(user_input) - pri
                             
                             if int(user_input) > return_coin:
+                                repayment.append({"product":j["product"]})
                                 ent.config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(0, "010-XXXX-XXX 연락주십시오.")
                                 ent.config(state="disabled")
+                                
                             else:
                                 return_coin = return_coin - int(user_input)
-                            
+                                
+                                repayment.append({"product":j["product"] ,"return": return_coin})
+                                
                                 ent. config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(tk.END, "구매 감사합니다.")
                                 ent.config(state="disabled")
-                                
+                                              
         else:
             ent. config(state="normal")
             ent.insert(tk.END, num)
