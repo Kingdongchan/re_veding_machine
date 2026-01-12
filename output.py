@@ -12,7 +12,7 @@ def output_prd (output_frm):
     coin_frm = tk.Frame(output_frm, width=50, height=50, bg="lightgray")
     coin_frm.pack(side="left", expand=True)
 
-    coin_btn = tk.Button(coin_frm, text=str(kp.repayment["return"]), command=lambda:destroy_bnt(coin_btn))
+    coin_btn = tk.Button(coin_frm, text=str(kp.repayment["return_coin"]), command=lambda:destroy_bnt(coin_btn))
     coin_btn.pack(expand=True)
 
     #2. 상품 툴

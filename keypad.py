@@ -14,7 +14,7 @@ import output
 
 return_coin = 5000
 
-repayment= {"product":"", "return":0}
+repayment= {"product":"", "return_coin": 0}
 
 def key_number (keypad_frm, output_frm):
     # 입력창 생성
@@ -34,7 +34,7 @@ def key_number (keypad_frm, output_frm):
         r = index//3+1
         c = index%3
         
-        nmb_btn = tk.Button(keypad_frm, text=i, width=3, height=1, command= lambda idx=i:number_input(idx,))
+        nmb_btn = tk.Button(keypad_frm, text=i, width=3, height=1, command= lambda idx=i:number_input(idx))
         nmb_btn.grid(row=r, column=c)
         
     #취소버튼 만들기
@@ -62,6 +62,7 @@ def key_number (keypad_frm, output_frm):
                 pri = j["price"]
                 frm = j["frm"]    
                 prd = j["product"]   
+                    
                 
                 frm.config(bg="white")    
                 
@@ -91,29 +92,30 @@ def key_number (keypad_frm, output_frm):
 
                             j["stock"] = j["stock"] - 1
                             
-                            user_input = int(user_input) - pri
+                            j["pay"] = j["pay"] - pri
                             
-                            if int(user_input) > return_coin:
+                            if j["pay"] > return_coin:
                                 
                                 repayment["product"] = prd
-                                repayment["return"] = user_input
+                    
                                 ent.config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(0, "010-XXXX-XXX 연락주십시오.")
                                 ent.config(state="disabled")
                                 
                             else:
-                                return_coin = return_coin - int(user_input)
+                                return_coin = return_coin - j["pay"]
+                                
                                 
                                 repayment["product"] = prd
-                                
+                                repayment["return_coin"] = return_coin
                                 ent. config(state="normal")
                                 ent.delete(0, tk.END)
                                 ent.insert(tk.END, "구매 감사합니다.")
                                 ent.config(state="disabled")
            
             output.output_prd(output_frm)
-                                              
+                                                          
         else:
             ent. config(state="normal")
             ent.insert(tk.END, num)
